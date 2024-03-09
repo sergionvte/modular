@@ -23,15 +23,41 @@
     <div class="container mx-auto flex justify-between items-center">
         <!-- Logo -->
         <div class="flex items-center">
-            <img class="h-8 mr-4 select-none" src="{% static 'img/logo_web_text.svg' %}" alt="Logo">
+            <a href="{% url 'index' %}">
+                <img class="h-8 mr-4 select-none" src="{% static 'img/logo_web_text.svg' %}" alt="Logo">
+            </a>
         </div>
         <!-- Botones de Iniciar Sesión y Registrarse -->
         <div>
-            <a href="" class="text-fg1 font-medium mr-4">Iniciar sesión</a>
-            <a href="" class="bg-orange_slow text-fg0 font-medium py-2 px-4 rounded hover:bg-orange hover:text-fg1">Registrarse</a>
+            {% block action %}
+            <a href="{% url 'login' %}" class="text-fg1 font-medium mr-4">Iniciar sesión</a>
+            <a href="{% url 'crear_usuario' %}" class="bg-orange_slow text-fg0 font-medium py-2 px-4 rounded hover:bg-orange hover:text-fg1">Registrarse</a>
+            {% endblock %}
         </div>
     </div>
 </nav>
+
     {% block content %} {% endblock %}
+
+<footer class="text-center p-5 font-bold uppercase mt-10 text-fg1 bg-bg0_h">
+
+        <div class="inline-block md:flex items-center justify-around">
+            <a href="http://www.twitter.com/DIFGUADALAJARA" class="inline-flex">
+                <span class="m-1 block">Twitter</span>
+                <img src="https://img.icons8.com/ios-glyphs/30/ffffff/twitter--v1.png" alt="Twitter"
+                    class="w-6 h-6 m-1" />
+            </a>
+            <span class="text-sm">Copyright &copy;
+                <a class="link-light" href="https://difgdl.gob.mx" target="_blank">Movie Match {% now "Y" %}</a>
+            </span>
+
+            <a href="https://www.facebook.com/dif.guadalajara" class="inline-flex">
+                <span class="m-1 block">Facebook</span>
+                <img src="https://img.icons8.com/ios-glyphs/30/ffffff/facebook.png" alt="Facebook"
+                    class="w-6 h-6 m-1" />
+            </a>
+        </div>
+
+    </footer>
 </body>
 </html>

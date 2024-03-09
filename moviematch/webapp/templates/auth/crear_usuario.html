@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
-{% block title %}Login{% endblock %}
+{% block title %}Registrarse{% endblock %}
 
 {% block action %}
-<a href="{% url 'crear_usuario' %}" class="bg-orange_slow text-fg0 font-medium py-2 px-4 rounded hover:bg-orange hover:text-fg1">Registrarse</a>
+<a href="{% url 'login' %}" class="bg-orange_slow text-fg0 font-medium py-2 px-4 rounded hover:bg-orange hover:text-fg1">Iniciar sesión</a>
 {% endblock %}
 
 {% block content %}
@@ -11,7 +11,14 @@
 
 <div class="flex justify-center items-center h-screen">
     <div class="bg-bg2 shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <h2 class="text-2xl font-bold mb-4">Iniciar Sesión</h2>
+        <h2 class="text-2xl font-bold mb-4">Regístrate</h2>
+        <!-- Nombre -->
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="nombre">
+                Nombre
+            </label>
+            <input class="bg-gray shadow appearance-none border rounded w-full py-2 px-3 text-fg1 placeholder-fg1 leading-tight focus:outline-none focus:shadow-outline" id="nombre" type="text" placeholder="Nombre">
+        </div>
         <!-- Correo -->
         <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="correo">
@@ -26,10 +33,17 @@
             </label>
             <input class="bg-gray shadow appearance-none border rounded w-full py-2 px-3 text-fg1 placeholder-fg1 leading-tight focus:outline-none focus:shadow-outline" id="contrasenia" type="password" placeholder="Contraseña">
         </div>
+        <!-- Confirmar contraseña -->
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="contrasenia_confirm">
+                Confirmar contraseña
+            </label>
+            <input class="bg-gray shadow appearance-none border rounded w-full py-2 px-3 text-fg1 placeholder-fg1 leading-tight focus:outline-none focus:shadow-outline" id="contrasenia_confirm" type="password" placeholder="Confirmar contraseña">
+        </div>
         <!-- Botón de Enviar -->
         <div class="mb-4">
             <button class="bg-orange_slow text-fg0 font-medium py-2 px-4 rounded hover:bg-orange hover:text-fg1 w-full" type="button">
-                Iniciar sesión
+                Registrarse
             </button>
         </div>
         <!-- Botón de Google -->
