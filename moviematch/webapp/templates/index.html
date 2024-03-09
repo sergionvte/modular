@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {% endblock %}
+
+{% block content %}
+
+<div class="content">
+    <div class="relative h-screen overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-60 z-0">
+            <img src="{% static 'img/background.jpeg' %}" alt="background" class="w-full h-full object-cover">
+
+        </div>
+            <div class="absolute inset-0 flex items-center justify-center z-10">
+
+                <div class="text-white text-center">
+                    <h1 class="text-4xl font-bold text-fg1">Movie Match</h1>
+                    <button class="px-4 py-2 font-bold rounded hover:bg-yellow-700 mt-6 bg-orange_slow text-fg0 hover:bg-orange hover:text-fg1">
+                        Movie Plus
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="py-16 px-4">
+            <div class="max-w-5xl mx-auto text-center">
+                <h3 class="text-xl font-medium mb-8">¿QUÉ ESTÁ INCLUIDO?</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                    <div class="p-6 rounded-lg">
+                        <h4 class="text-lg font-semibold mb-4">Uso básico</h4>
+                        <ul class="list-disc list-inside">
+                            <li>Detalle 1</li>
+                            <li>Detalle 2</li>
+                            <li>Detalle 3</li>
+                        </ul>
+                    </div>
+                    <div class="p-6 rounded-lg">
+                        <h4 class="text-lg font-semibold mb-4">Movie premium</h4>
+                        <ul class="list-disc list-inside">
+                            <li>Detalle 1</li>
+                            <li>Detalle 2</li>
+                            <li>Detalle 3</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center p-5 font-bold uppercase mt-10 text-fg1 bg-bg0_h">
+
+        <div class="inline-block md:flex items-center justify-around">
+            <a href="http://www.twitter.com/DIFGUADALAJARA" class="inline-flex">
+                <span class="m-1 block">Twitter</span>
+                <img src="https://img.icons8.com/ios-glyphs/30/ffffff/twitter--v1.png" alt="Twitter"
+                    class="w-6 h-6 m-1" />
+            </a>
+            <span class="text-sm">Copyright &copy;
+                <a class="link-light" href="https://difgdl.gob.mx" target="_blank">Movie Match
+                    2024 jeje</a>
+            </span>
+            <a href="https://www.facebook.com/dif.guadalajara" class="inline-flex">
+                <span class="m-1 block">Facebook</span>
+                <img src="https://img.icons8.com/ios-glyphs/30/ffffff/facebook.png" alt="Facebook"
+                    class="w-6 h-6 m-1" />
+            </a>
+        </div>
+
+    </footer>
+
+{% endblock %}
