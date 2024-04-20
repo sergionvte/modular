@@ -1,5 +1,5 @@
 {% load static tailwind_tags %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -14,9 +14,7 @@
       defer
       src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
     ></script>
-
     {% tailwind_css %}
-
     <title>MovieMatch - {% block title %}{% endblock %}</title>
   </head>
   <body class="bg-bg0_s text-fg2">
@@ -36,9 +34,7 @@
         <div>{% block action %} {% endblock %}</div>
       </div>
     </nav>
-
     {% block content %} {% endblock %}
-
     <footer class="text-center p-5 font-bold uppercase mt-10 text-fg1 bg-bg0_h">
       <div class="inline-block md:flex items-center justify-around">
         <a href="http://www.twitter.com/DIFGUADALAJARA" class="inline-flex">
@@ -55,7 +51,6 @@
             >Movie Match {% now "Y" %}</a
           >
         </span>
-
         <a href="https://www.facebook.com/dif.guadalajara" class="inline-flex">
           <span class="m-1 block">Facebook</span>
           <img

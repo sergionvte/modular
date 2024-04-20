@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 class User(models.Model):
     name = models.CharField(max_length=255)
@@ -9,6 +10,8 @@ class User(models.Model):
     remember_token = models.CharField(max_length=100, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+
 class Movie(models.Model):
     number = models.IntegerField()
     string = models.CharField(max_length=255)

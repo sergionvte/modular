@@ -1,87 +1,41 @@
-{% extends 'base.html' %} {% block title %}Registro{% endblock %} {% block action %}
-<a
-  href="{% url 'login' %}"
-  class="bg-orange_slow text-fg0 font-medium py-2 px-4 rounded hover:bg-orange hover:text-fg1"
-  >Iniciar sesión</a
->
-{% endblock %} {% block content %}
-
+{% extends 'base.html' %}
+{% block title %}Registro{% endblock %}
+{% block action %}
+<a href="{% url 'login' %}" class="bg-orange_slow text-fg0 font-medium py-2 px-4 rounded hover:bg-orange hover:text-fg1">Iniciar sesión</a>
+{% endblock %}
+{% block content %}
 <div class="flex justify-center items-center h-screen">
   <div class="bg-bg2 shadow-md rounded px-8 pt-6 pb-8 mb-4">
     <h2 class="text-2xl font-bold mb-4">Regístrate</h2>
-    <!-- Nombre -->
-    <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="nombre">
-        Nombre
-      </label>
-      <input
-        class="bg-gray shadow appearance-none border rounded w-full py-2 px-3 text-fg1 placeholder-fg1 leading-tight focus:outline-none focus:shadow-outline"
-        id="nombre"
-        type="text"
-        placeholder="Nombre"
-      />
+    {% if messages %}
+    {% for message in messages %}
+    <div class="{% if message.tags %}{{ message.tags }}{% endif %}">
+      {{ message }}
     </div>
-    <!-- Correo -->
-    <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="correo">
-        Correo Electrónico
-      </label>
-      <input
-        class="bg-gray shadow appearance-none border rounded w-full py-2 px-3 text-fg1 placeholder-fg1 leading-tight focus:outline-none focus:shadow-outline"
-        id="correo"
-        type="email"
-        placeholder="Correo Electrónico"
-      />
-    </div>
-    <!-- Contraseña -->
-    <div class="mb-4">
-      <label
-        class="block text-gray-700 text-sm font-bold mb-2"
-        for="contrasenia"
-      >
-        Contraseña
-      </label>
-      <input
-        class="bg-gray shadow appearance-none border rounded w-full py-2 px-3 text-fg1 placeholder-fg1 leading-tight focus:outline-none focus:shadow-outline"
-        id="contrasenia"
-        type="password"
-        placeholder="Contraseña"
-      />
-    </div>
-    <!-- Confirmar contraseña -->
-    <div class="mb-4">
-      <label
-        class="block text-gray-700 text-sm font-bold mb-2"
-        for="contrasenia_confirm"
-      >
-        Confirmar contraseña
-      </label>
-      <input
-        class="bg-gray shadow appearance-none border rounded w-full py-2 px-3 text-fg1 placeholder-fg1 leading-tight focus:outline-none focus:shadow-outline"
-        id="contrasenia_confirm"
-        type="password"
-        placeholder="Confirmar contraseña"
-      />
-    </div>
-    <!-- Botón de Enviar -->
-    <div class="mb-4">
-      <button
-        class="bg-orange_slow text-fg0 font-medium py-2 px-4 rounded hover:bg-orange hover:text-fg1 w-full"
-        type="button"
-      >
-        Registrarse
-      </button>
-    </div>
-    <!-- Botón de Google -->
-    <div>
-      <button
-        class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
-        type="button"
-      >
-        Iniciar sesión con Google
-      </button>
-    </div>
+    {% endfor %}
+    {% endif %}
+    <form method="post">
+      {% csrf_token %}
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="nombre">Nombre</label>
+        <input class="bg-gray shadow appearance-none border rounded w-full py-2 px-3 text-fg1 placeholder-fg1 leading-tight focus:outline-none focus:shadow-outline" id="nombre" type="text" name="nombre" placeholder="Nombre" required>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="correo">Correo Electrónico</label>
+        <input class="bg-gray shadow appearance-none border rounded w-full py-2 px-3 text-fg1 placeholder-fg1 leading-tight focus:outline-none focus:shadow-outline" id="correo" type="email" name="correo" placeholder="Correo Electrónico" required>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="contrasenia">Contraseña</label>
+        <input class="bg-gray shadow appearance-none border rounded w-full py-2 px-3 text-fg1 placeholder-fg1 leading-tight focus:outline-none focus:shadow-outline" id="contrasenia" type="password" name="contrasenia" placeholder="Contraseña" required>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="contrasenia_confirm">Confirmar contraseña</label>
+        <input class="bg-gray shadow appearance-none border rounded w-full py-2 px-3 text-fg1 placeholder-fg1 leading-tight focus:outline-none focus:shadow-outline" id="contrasenia_confirm" type="password" name="contrasenia_confirm" placeholder="Confirmar contraseña" required>
+      </div>
+      <div class="mb-4">
+        <button class="bg-orange_slow text-fg0 font-medium py-2 px-4 rounded hover:bg-orange hover:text-fg1 w-full" type="submit">Registrarse</button>
+      </div>
+    </form>
   </div>
 </div>
-
 {% endblock %}
