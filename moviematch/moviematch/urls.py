@@ -16,7 +16,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-#from webapp.views import index, login, register
 from webapp import views
 
 urlpatterns = [
@@ -24,5 +23,5 @@ urlpatterns = [
     path('__reload__/', include('django_browser_reload.urls')),
     path('', views.index, name = 'index'),
     path('login/', views.login, name = 'login'),
-    path('crear_usuario/', views.crear_usuario, name = 'crear_usuario')
+    path('register/', views.register, name = 'register')
 ]

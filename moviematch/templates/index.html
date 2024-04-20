@@ -1,0 +1,74 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Inicio{% endblock
+%} {% block action %}
+<a href="{% url 'login' %}" class="text-fg1 font-medium mr-4">Iniciar sesión</a>
+<a
+  href="{% url 'register' %}"
+  class="bg-orange_slow text-fg0 font-medium py-2 px-4 rounded hover:bg-orange hover:text-fg1"
+  >Registrarse</a
+>
+{% endblock %} {% block content %}
+<div class="content">
+  <div class="relative h-screen overflow-hidden bg-black">
+    <div class="absolute inset-0 opacity-50 z-0">
+      <img
+        src="{% static 'img/background.jpeg' %}"
+        alt="background"
+        class="w-full h-full object-cover"
+      />
+    </div>
+    <div class="absolute inset-0 flex items-center justify-center z-10">
+      <div class="text-white text-center">
+        <h1 class="text-4xl font-bold text-fg1">Movie Match</h1>
+        <button
+          class="px-4 py-2 font-bold rounded hover:bg-yellow-700 mt-6 bg-orange_slow text-fg0 hover:bg-orange hover:text-fg1"
+        >
+          Movie Plus
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="py-16 px-4">
+    <div class="max-w-5xl mx-auto text-center">
+      <h3 class="text-xl font-medium mb-8">¿QUÉ INCLUYE NUESTRA APLICACIÓN?</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        <div class="p-6 rounded-lg">
+          <h4 class="text-lg font-semibold mb-4">
+            Recomendaciones Personalizadas
+          </h4>
+          <p class="text-gray-600 mb-4">
+            Descubre nuevas películas basadas en tus gustos y preferencias
+            personales.
+          </p>
+          <ul class="list-disc list-inside">
+            <li>Explora una amplia variedad de géneros y temas.</li>
+            <li>Recibe sugerencias adaptadas a tus intereses específicos.</li>
+            <li>
+              Encuentra películas que podrían interesarte según tus
+              preferencias.
+            </li>
+          </ul>
+        </div>
+        <div class="p-6 rounded-lg">
+          <h4 class="text-lg font-semibold mb-4">
+            Acceso a Información Completa
+          </h4>
+          <p class="text-gray-600 mb-4">
+            Obtén información detallada sobre una amplia variedad de películas.
+          </p>
+          <ul class="list-disc list-inside">
+            <li>Explora y aprende más sobre tus películas favoritas.</li>
+            <li>
+              Encuentra detalles sobre el elenco, la trama y la crítica de cada
+              película.
+            </li>
+            <li>
+              Accede a contenido exclusivo y novedades sobre tus películas
+              preferidas.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from datetime import datetime
+
 
 # Create your views here.
 def index(request):
@@ -10,5 +10,5 @@ def login(request):
     return render(request, 'auth/login.html')
 
 
-def crear_usuario(request):
-    return render(request, 'auth/crear_usuario.html')
+def register(request):
+    return render(request, 'auth/register.html')
