@@ -1,13 +1,22 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Inicio{% endblock%}{% block action %}
+{% if user_logged_in  %}
+<a href="{% url 'logout' %}" class="text-fg1 font-medium mr-4">Cerrar sesión</a>
+{% else %}
 <a href="{% url 'login' %}" class="text-fg1 font-medium mr-4">Iniciar sesión</a>
 <a
   href="{% url 'register' %}"
   class="bg-orange_slow text-fg0 font-medium py-2 px-4 rounded hover:bg-orange hover:text-fg1"
   >Registrarse</a
 >
+{% endif %}
+
 {% endblock %}{% block content %}
+{% if is_authenticated %}
+<div>Hola</div>
+{% include 'dashboard.html' %}
+{% else %}
 <div class="content">
   <div class="relative h-screen overflow-hidden bg-black">
     <div class="absolute inset-0 opacity-50 z-0">
@@ -75,4 +84,6 @@
     </div>
   </div>
 </div>
+{% endif %}
+
 {% endblock %}

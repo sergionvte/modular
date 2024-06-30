@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block action %}<a href="{% url 'logout' %}" class="text-fg1 font-medium mr-4">Cerrar sesión</a>{% endblock %}
+
+{% block content %}
+    <!-- Navbar -->
+    <nav class="bg-gray-800 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold">My Cinema</a>
+            <div>
+                <a href="#" class="mr-4">Inicio</a>
+                <a href="#" class="mr-4">Series</a>
+                <a href="#" class="mr-4">Películas</a>
+                <a href="#" class="mr-4">Novedades</a>
+                <a href="#">Mi lista</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Featured Section -->
+    <section class="relative h-96 bg-cover bg-center" style="background-image: url('https://via.placeholder.com/1920x1080');">
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
+        <div class="container mx-auto relative z-10 h-full flex flex-col justify-end pb-8">
+            <h1 class="text-4xl font-bold">Película Destacada</h1>
+            <p class="text-lg max-w-lg">Descripción de la película destacada que capta la atención de los usuarios y los invita a verla.</p>
+            <div class="mt-4">
+                <button class="bg-red-600 text-white px-4 py-2 rounded mr-2">Ver Ahora</button>
+                <button class="bg-gray-700 text-white px-4 py-2 rounded">Más Información</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Movies Grid -->
+    {% for x in movies %}
+    <div>
+        <h1>{{ x['title'] }}</h1>
+    </div>
+    {% endfor %}
+    <section class="container mx-auto py-8">
+        <h2 class="text-2xl font-bold mb-4">Películas Populares</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            <!-- Movie Card -->
+            <div class="relative">
+                <img src="https://via.placeholder.com/200x300" alt="Movie 1" class="w-full h-full object-cover rounded-lg">
+                <div class="absolute inset-0 bg-gray-900 bg-opacity-75 opacity-0 hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center text-center p-4">
+                    <div>
+                        <h3 class="text-lg font-bold">Movie Title 1</h3>
+                        <p class="text-sm">Short description of the movie goes here. This can be one or two lines long.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Repeat Movie Cards as needed -->
+            <div class="relative">
+                <img src="https://via.placeholder.com/200x300" alt="Movie 2" class="w-full h-full object-cover rounded-lg">
+                <div class="absolute inset-0 bg-gray-900 bg-opacity-75 opacity-0 hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center text-center p-4">
+                    <div>
+                        <h3 class="text-lg font-bold">Movie Title 2</h3>
+                        <p class="text-sm">Short description of the movie goes here. This can be one or two lines long.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more movie cards as needed -->
+        </div>
+    </section>
+{% endblock %}

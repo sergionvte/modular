@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_protect
+from .models import User
+from .forms import LoginForm
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 import logging
@@ -15,58 +18,98 @@ logging.basicConfig(
 # Create your views here.
 def index(request):
     if request.user.is_authenticated:
-        # Usuario autenticado: pasar contexto para usuario autenticado
-        context = {
-            'is_authenticated': True,
-            'username': request.user.username,
+        # Usuario está autenticado
+
+        import requests
+
+        url = "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1"
+
+        headers = {
+            "accept": "application/json",
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkYmQ3MGM4NWEwNGJhNThlODc3ZTE1OTQ1MWJjZjQxZiIsInN1YiI6IjY2MmQ1MjhkYTgwNjczMDEyOGU4NTkzZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.0KgaE0j_dIzCFXiyYTzug0UqdYYtAlPYvtLWTG4J824"
         }
+
+        response = requests.get(url, headers=headers)
+        import json
+        data = json.loads(response.text)
+
+        context = {
+            'user_logged_in': True,
+            'user': request.user,
+            'movies': data['results'],
+            'url_prefix': 'https://image.tmdb.org/t/p/w1280'
+        }
+
     else:
-        # Usuario no autenticado: pasar contexto para usuario no autenticado
-        context = {
-            'is_authenticated': False,
-        }
-    return render(request, 'index.html')
+        # Usuario no está autenticado
+        context = {'user_logged_in': False}
+    return render(request, 'index.html', context)
 
 
+
+from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_protect
+from .models import User
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
+import logging
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    filename='app.log'
+)
+
+@csrf_protect
 def user_login(request):
     if request.method == 'POST':
-        email = request.POST['correo']
-        password = request.POST['contrasenia']
+        email = request.POST.get('correo')
+        password = request.POST.get('contrasenia')
 
-        # Autenticar al usuario
-        user = authenticate(request, username=email, password=password)
+        logging.info(f"Correo: {email}, Contraseña: {password}")
+
+        user = authenticate(request, email=email, password=password)
 
         if user is not None:
-            # Iniciar sesión
             login(request, user)
-            logging.info(f'Inicio de sesión exitoso para el usuario: {user.username}')
-            return redirect('index')  # Redirigir a la página de inicio después del inicio de sesión exitoso
+            logging.info(f"Usuario autenticado correctamente: {user}")
+            print(f"Usuario autenticado correctamente: {user}")
+            return redirect('index')
         else:
-            messages.error(request, 'Credenciales inválidas. Inténtalo de nuevo.')
+            messages.error(request, "Credenciales inválidas. Inténtalo de nuevo.")
+            logging.error("Credenciales inválidas. Inténtalo de nuevo.")
+
     return render(request, 'auth/login.html')
+
 
 
 def register(request):
     if request.method == 'POST':
-        # Obtener datos del formulario
         name = request.POST['nombre']
         email = request.POST['correo']
         password = request.POST['contrasenia']
         confirm_password = request.POST['contrasenia_confirm']
 
-        # Validar contraseñas
         if password != confirm_password:
             messages.error(request, 'Las contraseñas no coinciden')
-            return redirect('register')  # Redirigir de vuelta al formulario de registro
+            return redirect('register')
 
-        # Crear un nuevo usuario
         try:
-            user = User.objects.create_user(username=email, email=email, password=password)
-            user.first_name = name
-            user.save()
+            new_user = User(name=name, email=email)
+            new_user.set_password(password)
+            new_user.save()
             messages.success(request, '¡Registro exitoso! Ahora puedes iniciar sesión.')
-            return redirect('login')  # Redirigir al inicio de sesión después del registro
+            return redirect('login')
         except Exception as e:
             messages.error(request, f'Error al registrar usuario: {e}')
-            return redirect('register')  # Redirigir de vuelta al formulario de registro en caso de error
+            return redirect('register')
+
     return render(request, 'auth/register.html')
+
+
+from django.contrib.auth import logout as user_logout
+from django.shortcuts import redirect
+
+def logout(request):
+    user_logout(request)
+    return redirect('index')

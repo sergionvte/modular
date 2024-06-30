@@ -23,5 +23,7 @@ urlpatterns = [
     path('__reload__/', include('django_browser_reload.urls')),
     path('', views.index, name = 'index'),
     path('login/', views.user_login, name = 'login'),
-    path('register/', views.register, name = 'register')
+    path('register/', views.register, name = 'register'),
+    path('logout/', views.logout, name='logout'),  # Nueva URL para logout
+
 ]
