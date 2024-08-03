@@ -1,0 +1,14 @@
+{% load static %}
+<div class="content bg-black py-8 px-4">
+  <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4 justify-center">
+    {% for x in data %}
+    <a href="#">
+    <div class="movie-data text-center p-4 rounded-lg" style="background-color: rgb(68 64 60);">
+      <h1 class="text-white mb-2">{{ x.title }}</h1>
+      <img class="w-full h-auto max-h-60 object-cover rounded" src="https://image.tmdb.org/t/p/w1280{{ x.poster_path }}" alt="{{ x.title }}">
+    </div>
+    </a>
+    {% endfor %}
+  </img>
+</div>
+</div>

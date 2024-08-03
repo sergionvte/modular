@@ -1,0 +1,65 @@
+{% load static tailwind_tags %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="icon" type="image/x-icon" href="{% static 'img/logo.ico' %}" />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    {% tailwind_css %}
+    <title>MovieMatch - {% block title %}{% endblock %}</title>
+  </head>
+  <body class="bg-bg0_s text-fg2">
+    <nav class="bg-bg0_h p-4">
+      <div class="container mx-auto flex justify-between items-center">
+        <!-- Logo -->
+        <div class="flex items-center">
+          <a href="{% url 'index' %}">
+            <img
+              class="h-8 mr-4 select-none"
+              src="{% static 'img/logo_web_text.svg' %}"
+              alt="Logo"
+            />
+          </a>
+        </div>
+        <!-- Botones de Iniciar Sesión y Registrarse -->
+        <div>{% block action %} {% endblock %}</div>
+      </div>
+    </nav>
+    {% block content %} {% endblock %}
+    <footer class="text-center p-5 font-bold uppercase pt-10 text-fg1 bg-bg0_h">
+      <div class="inline-block md:flex items-center justify-around">
+        <a href="http://www.twitter.com/DIFGUADALAJARA" class="inline-flex">
+          <span class="m-1 block">Twitter</span>
+          <img
+            src="https://img.icons8.com/ios-glyphs/30/ffffff/twitter--v1.png"
+            alt="Twitter"
+            class="w-6 h-6 m-1"
+          />
+        </a>
+        <span class="text-sm"
+          >Copyright &copy;
+          <a class="link-light" href="https://difgdl.gob.mx" target="_blank"
+            >Movie Match {% now "Y" %}</a
+          >
+        </span>
+        <a href="https://www.facebook.com/dif.guadalajara" class="inline-flex">
+          <span class="m-1 block">Facebook</span>
+          <img
+            src="https://img.icons8.com/ios-glyphs/30/ffffff/facebook.png"
+            alt="Facebook"
+            class="w-6 h-6 m-1"
+          />
+        </a>
+      </div>
+    </footer>
+  </body>
+</html>

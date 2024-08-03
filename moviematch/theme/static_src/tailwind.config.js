@@ -58,7 +58,13 @@ module.exports = {
                 'fg2': '#d5c4a1',
                 'fg1': '#ebdbb2',
                 'fg0': '#fbf1c7',
-                'orange_slow': '#fe8019'
+                'orange_slow': '#fe8019',
+
+                'fg_color': '#D2CDB3',
+                'bg_color': '#30313A',
+                'highlight_color': '#4792A3',
+                'hover_color': '#54757A',
+                'dark_color': '#3A3F43',
             }
         },
     },
