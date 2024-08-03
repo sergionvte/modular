@@ -7,6 +7,10 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 import logging
 
+from imdb import Cinemagoer
+from tmdbv3api import TMDb, Movie
+import pandas as pd
+
 
 logging.basicConfig(
     level=logging.INFO,
@@ -16,33 +20,37 @@ logging.basicConfig(
 
 
 # Create your views here.
+import requests
 def index(request):
     if request.user.is_authenticated:
-        # Usuario está autenticado
-
+        # Usuario autenticado
+        tmdb = TMDb()
+        tmdb.api_key = 'dbd70c85a04ba58e877e159451bcf41f'
+        tmdb_movie = Movie()
         import requests
-
         url = "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1"
-
         headers = {
             "accept": "application/json",
             "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkYmQ3MGM4NWEwNGJhNThlODc3ZTE1OTQ1MWJjZjQxZiIsInN1YiI6IjY2MmQ1MjhkYTgwNjczMDEyOGU4NTkzZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.0KgaE0j_dIzCFXiyYTzug0UqdYYtAlPYvtLWTG4J824"
         }
-
         response = requests.get(url, headers=headers)
         import json
         data = json.loads(response.text)
 
+
+        # print('\n\n\n\n\n\n\n\n', movies)
+
         context = {
             'user_logged_in': True,
-            'user': request.user,
-            'movies': data['results'],
-            'url_prefix': 'https://image.tmdb.org/t/p/w1280'
+            'url_prefix': 'https://image.tmdb.org/t/p/w1280',
+            'data': data['results']
         }
 
     else:
-        # Usuario no está autenticado
-        context = {'user_logged_in': False}
+        # Usuario no autenticado
+        context = {
+            'user_logged_in': False,
+        }
     return render(request, 'index.html', context)
 
 
@@ -80,7 +88,6 @@ def user_login(request):
             logging.error("Credenciales inválidas. Inténtalo de nuevo.")
 
     return render(request, 'auth/login.html')
-
 
 
 def register(request):
