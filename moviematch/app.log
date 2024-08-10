@@ -3071,3 +3071,5 @@ django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '
 2024-08-03 16:59:21,621 - ERROR - Credenciales inválidas. Inténtalo de nuevo.
 2024-08-03 17:01:46,169 - INFO - Correo: sergionvte11@gmail.com, Contraseña: Navarrete2311
 2024-08-03 17:01:46,404 - INFO - Usuario autenticado correctamente: sergionvte11@gmail.com
+2024-08-03 13:14:26,490 - INFO - Correo: pene@pene.pene, Contrase�a: pene
+2024-08-03 13:14:27,667 - INFO - Usuario autenticado correctamente: pene@pene.pene
